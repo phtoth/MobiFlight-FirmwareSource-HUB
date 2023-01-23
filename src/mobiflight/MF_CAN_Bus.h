@@ -39,7 +39,28 @@ void Check_CAN_Bus(int *BTN_List, int *ANL_List)
           }
           break;
         case 2:
-          ANL_List[canMsg.data[1]] = canMsg.data[2];
+          if (canMsg.data[2] == 0)
+          {
+            ANL_List[canMsg.data[1]] = canMsg.data[3];
+          }
+          else if (canMsg.data[2] == 1)
+          {
+            ANL_List[canMsg.data[1]] = canMsg.data[3] + 254;
+          }
+          else if (canMsg.data[2] == 2)
+          {
+            ANL_List[canMsg.data[1]] = canMsg.data[3] + 508;
+          }
+          else if (canMsg.data[2] == 3)
+          {
+            ANL_List[canMsg.data[1]] = canMsg.data[3] + 762;
+          }
+          else if (canMsg.data[2] == 4)
+          {
+            ANL_List[canMsg.data[1]] = canMsg.data[3] + 1016;
+          }
+          
+          //Serial.println(ANL_List[canMsg.data[1]]);
           break;
     }
 
