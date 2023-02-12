@@ -7,6 +7,7 @@
 #include "mobiflight.h"
 #include "MFOutput.h"
 #include "Output.h"
+//#include "MF_CAN_Bus.h"
 
 namespace Output
 {
@@ -43,8 +44,11 @@ namespace Output
         // Read led state argument, interpret string as boolean
         int pin = cmdMessenger.readInt16Arg();
         int state = cmdMessenger.readInt16Arg();
+
+        
         // Set led
-        analogWrite(pin, state); // why does the UI sends the pin number and not the x.th output number like other devices?
+        UpdateLedList(pin, state);
+        //analogWrite(pin, state); // why does the UI sends the pin number and not the x.th output number like other devices?
                                  //  output[pin]->set(state);      // once this is changed uncomment this
         setLastCommandMillis();
     }

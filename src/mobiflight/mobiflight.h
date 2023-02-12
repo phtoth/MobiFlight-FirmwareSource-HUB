@@ -12,4 +12,6 @@
 #include "allocateMem.h"
 #include "commandmessenger.h"
 
+void UpdateLedList(int _pin, int _code);
+
 // mobiflight.h

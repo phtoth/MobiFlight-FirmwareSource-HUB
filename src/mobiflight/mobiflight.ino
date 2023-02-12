@@ -10,15 +10,21 @@
 int ButtonsList[200];
 int AnalogList[200];
 
+int LedListPinout[100];
+int LedListState[100];
+int LedListControl = 0;
+
 // CAN Bus
 
 #include <SPI.h>
 #include <mcp2515.h>
-#include "MF_CAN_Bus.h"
 
+#include "MF_CAN_Bus_Data.h"
+#include "MF_CAN_Bus.h"
 
 #include "Button.h"
 #include "Analog.h"
+#include "Output.h"
 
 // #include "Encoder.h"
 #include "MFEEPROM.h"
@@ -29,7 +35,7 @@ int AnalogList[200];
 // #include "InputShifter.h"
 // #endif
 
-#include "Output.h"
+
 
 #if MF_SEGMENT_SUPPORT == 1
 #include "LedSegment.h"
@@ -134,6 +140,15 @@ void SetPowerSavingMode(bool state)
 #endif
 }
 
+void UpdateLedList(int _pin, int _code)
+{
+    //LedListControl ++;
+    //LedListPinout[LedListControl] = _pin;
+    //LedListState[LedListControl] = _code;
+    SendLedData(_pin, _code);
+}
+
+
 void updatePowerSaving()
 {
     if (!powerSavingMode && ((millis() - getLastCommandMillis()) > (POWER_SAVING_TIME * 1000))) {
@@ -163,7 +178,6 @@ void setup()
 {
     Serial.begin(115200);
     MFeeprom.init();
-    // aqui
     attachCommandCallbacks();
     cmdMessenger.printLfCr();
     ResetBoard();
@@ -178,7 +192,8 @@ void loop()
 {
 
     Check_CAN_Bus(ButtonsList, AnalogList);
-  
+    //SendLedData(LedListPinout, LedListState, LedListControl);
+
     // Process incoming serial data, and perform callbacks
     cmdMessenger.feedinSerialData();
     updatePowerSaving();
