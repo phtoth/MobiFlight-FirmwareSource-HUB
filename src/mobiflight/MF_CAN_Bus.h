@@ -104,3 +104,16 @@ void SendLedData(int _pin, int _code)
   }
   */
 }
+
+
+void SendDisplayData(int module, int SubModule, int value)
+{
+        canMsg.can_id  = 0x035;
+        canMsg.can_dlc = 3;
+        canMsg.data[0] = module; // ID Do Modulo
+        canMsg.data[1] = SubModule; // ID do SubModulo
+        canMsg.data[2] = value; // Pino do Dislpay
+        mcp2515.sendMessage(&canMsg);
+        
+        delay(2);
+}

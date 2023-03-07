@@ -49,7 +49,7 @@ void attachCommandCallbacks()
 #if MF_SEGMENT_SUPPORT == 1
     cmdMessenger.attach(kInitModule, LedSegment::OnInitModule);
     cmdMessenger.attach(kSetModule, LedSegment::OnSetModule);
-    cmdMessenger.attach(kSetModuleBrightness, LedSegment::OnSetModuleBrightness);
+    //cmdMessenger.attach(kSetModuleBrightness, LedSegment::OnSetModuleBrightness);
 #endif
 
     cmdMessenger.attach(kSetPin, Output::OnSet);

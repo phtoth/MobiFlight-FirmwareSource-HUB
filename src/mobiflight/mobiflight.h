@@ -13,5 +13,7 @@
 #include "commandmessenger.h"
 
 void UpdateLedList(int _pin, int _code);
+void UpdateDisplayData(int module, int SubModule, int value);
+
 
 // mobiflight.h

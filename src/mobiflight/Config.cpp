@@ -265,7 +265,8 @@ void readConfig()
             params[2] = readUintFromEEPROM(&addreeprom); // Pin CLK number
             params[3] = readUintFromEEPROM(&addreeprom); // brightness
             params[4] = readUintFromEEPROM(&addreeprom); // number of modules
-            LedSegment::Add(params[0], params[1], params[2], params[4], params[3]);
+            //LedSegment::Add(params[0], params[1], params[2], params[4], params[3]);
+            LedSegment::Add(params[1], params[4]);
             copy_success = readEndCommandFromEEPROM(&addreeprom); // check EEPROM until end of name
             break;
 #endif

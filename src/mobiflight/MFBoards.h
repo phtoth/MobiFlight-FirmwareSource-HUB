@@ -7,9 +7,10 @@
 #ifndef MFBoardMega_h
 #define MFBoardMega_h
 
-//#ifndef MF_SEGMENT_SUPPORT
-//#define MF_SEGMENT_SUPPORT 0
-//#endif
+#ifndef MF_SEGMENT_SUPPORT
+#define MF_SEGMENT_SUPPORT 1
+#endif
+
 //#ifndef MF_LCD_SUPPORT
 //#define MF_LCD_SUPPORT 0
 //#endif
@@ -19,18 +20,23 @@
 #ifndef MF_SERVO_SUPPORT
 #define MF_SERVO_SUPPORT 0
 #endif
+
 #ifndef MF_ANALOG_SUPPORT
 #define MF_ANALOG_SUPPORT 1
 #endif
+
 #ifndef MF_OUTPUT_SHIFTER_SUPPORT
 #define MF_OUTPUT_SHIFTER_SUPPORT 0
 #endif
+
 #ifndef MF_INPUT_SHIFTER_SUPPORT
 #define MF_INPUT_SHIFTER_SUPPORT 0
 #endif
+
 #ifndef MF_MUX_SUPPORT
 #define MF_MUX_SUPPORT 0
 #endif
+
 #ifndef MF_DIGIN_MUX_SUPPORT
 #define MF_MUX_SUPPORT       0
 #define MF_DIGIN_MUX_SUPPORT 0
@@ -38,7 +44,7 @@
 
 #define MAX_OUTPUTS         200
 #define MAX_BUTTONS         200
-#define MAX_LEDSEGMENTS     0
+#define MAX_LEDSEGMENTS     2
 #define MAX_ENCODERS        0
 #define MAX_STEPPERS        0
 #define MAX_MFSERVOS        0

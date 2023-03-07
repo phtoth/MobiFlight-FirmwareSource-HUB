@@ -13,7 +13,9 @@ namespace LedSegment
     MFSegments *ledSegments[MAX_LEDSEGMENTS];
     uint8_t     ledSegmentsRegistered = 0;
 
-    void        Add(int dataPin, int csPin, int clkPin, int numDevices, int brightness)
+
+    //void Add(int dataPin, int csPin, int clkPin, int numDevices, int brightness)
+    void Add(int csPin, int numDevices)
     {
         if (ledSegmentsRegistered == MAX_LEDSEGMENTS)
             return;
@@ -24,7 +26,7 @@ namespace LedSegment
             return;
         }
         ledSegments[ledSegmentsRegistered] = new (allocateMemory(sizeof(MFSegments))) MFSegments;
-        ledSegments[ledSegmentsRegistered]->attach(dataPin, csPin, clkPin, numDevices, brightness); // lc is our object
+        ledSegments[ledSegmentsRegistered]->attach(csPin, numDevices); // lc is our object
         ledSegmentsRegistered++;
 #ifdef DEBUG2CMDMESSENGER
         cmdMessenger.sendCmd(kDebug, F("Added Led Segment"));
@@ -54,7 +56,7 @@ namespace LedSegment
         int module     = cmdMessenger.readInt16Arg();
         int subModule  = cmdMessenger.readInt16Arg();
         int brightness = cmdMessenger.readInt16Arg();
-        ledSegments[module]->setBrightness(subModule, brightness);
+        //ledSegments[module]->setBrightness(subModule, brightness);
         setLastCommandMillis();
     }
 
@@ -65,7 +67,8 @@ namespace LedSegment
         char   *value     = cmdMessenger.readStringArg();
         uint8_t points    = (uint8_t)cmdMessenger.readInt16Arg();
         uint8_t mask      = (uint8_t)cmdMessenger.readInt16Arg();
-        ledSegments[module]->display(subModule, value, points, mask);
+        ledSegments[module]->display(module, subModule, value, points, mask);
+        //Serial.write(value, 200);
         setLastCommandMillis();
     }
 
@@ -74,7 +77,7 @@ namespace LedSegment
         int module     = cmdMessenger.readInt16Arg();
         int subModule  = cmdMessenger.readInt16Arg();
         int brightness = cmdMessenger.readInt16Arg();
-        ledSegments[module]->setBrightness(subModule, brightness);
+        //ledSegments[module]->setBrightness(subModule, brightness);
         setLastCommandMillis();
     }
 } // namespace

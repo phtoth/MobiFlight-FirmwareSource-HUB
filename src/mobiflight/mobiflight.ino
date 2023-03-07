@@ -148,6 +148,10 @@ void UpdateLedList(int _pin, int _code)
     SendLedData(_pin, _code);
 }
 
+void UpdateDisplayData(int module, int SubModule, int value)
+{
+    SendDisplayData(module, SubModule, value);
+}
 
 void updatePowerSaving()
 {
